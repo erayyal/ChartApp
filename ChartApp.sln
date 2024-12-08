@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartApp.Api", "ChartApp.Api\ChartApp.Api.csproj", "{34C1CA77-8BF5-4F9B-A8B2-5518B0831859}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartApp.UI", "ChartApp.UI\ChartApp.UI.csproj", "{F15AAAE5-A3F4-4FBC-8253-17ECE1E344F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34C1CA77-8BF5-4F9B-A8B2-5518B0831859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34C1CA77-8BF5-4F9B-A8B2-5518B0831859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34C1CA77-8BF5-4F9B-A8B2-5518B0831859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34C1CA77-8BF5-4F9B-A8B2-5518B0831859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15AAAE5-A3F4-4FBC-8253-17ECE1E344F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15AAAE5-A3F4-4FBC-8253-17ECE1E344F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15AAAE5-A3F4-4FBC-8253-17ECE1E344F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15AAAE5-A3F4-4FBC-8253-17ECE1E344F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

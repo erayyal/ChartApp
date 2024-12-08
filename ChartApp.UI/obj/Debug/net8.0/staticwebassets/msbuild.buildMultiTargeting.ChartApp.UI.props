@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/ChartApp.UI.props" />
+</Project>

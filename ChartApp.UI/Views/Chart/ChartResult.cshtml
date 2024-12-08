@@ -1,0 +1,103 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ChartApp.UI.Models.ChartRequestDto
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Dinamik Grafik Oluşturma";
+}
+
+<h1>Dinamik Grafik Oluşturma</h1>
+
+@if (ViewBag.Error != null)
+{
+    <p>@ViewBag.Error</p>
+}
+
+<div class="chart-body">
+    <div class="container form-container">
+        <form asp-controller="Chart" asp-action="ChartResult" method="post">
+            <div class="mb-3">
+                <label asp-for="Server">Server:</label>
+                <input asp-for="Server" type="text" required/>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Database">Chartbase:</label>
+                <input asp-for="Database" ype="text" required/>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Username">Username:</label>
+                <input asp-for="Username" type="text" required/>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password">Password:</label>
+                <input asp-for="Password" type="password" required/>
+            </div>
+            <div class="mb-3">
+                <label asp-for="TableName">Table Name:</label>
+                <input asp-for="TableName" type="text" required/>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ColumnsRaw">Columns (comma-separated):</label>
+                <input asp-for="ColumnsRaw" type="text" placeholder="Column1, Colum2" required/>
+            </div>
+            <div class="mb-3">
+                <label for="ChartType">Chart Type:</label>
+                <select id="ChartType" name="ChartType" required>
+                    <option value="bar">Bar</option>
+                    <option value="line">Line</option>
+                    <option value="pie">Pie</option>
+                </select>
+            </div>
+            <button type="submit">Generate Chart</button>
+        </form>
+    </div>
+
+    @if (ViewBag.ChartData != null)
+    {
+        <div class="chart-container">
+            <canvas id="dynamicChart" width="400" height="200"></canvas>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                // Modelden gelen veriyi JSON formatına çeviriyoruz.
+                const chartChart = @Html.Raw(Json.Serialize(ViewBag.ChartData));
+                const chartType = "@ViewBag.ChartType";
+
+                // Veriyi ayrıştırma
+                const labels = chartChart.map(item => item[Object.keys(item)[0]]);
+                const datasets = Object.keys(chartChart[0])
+                    .filter(key => key !== Object.keys(chartChart[0])[0])
+                    .map(key => ({
+                        label: key,
+                        data: chartChart.map(item => item[key]),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }));
+
+                // Chart.js ile grafik oluşturma
+                const ctx = document.getElementById('dynamicChart').getContext('2d');
+                new Chart(ctx, {
+                    type: chartType,
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+    }
+</div>
